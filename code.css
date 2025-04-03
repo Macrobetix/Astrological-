@@ -1,0 +1,104 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #222;
+}
+
+.calculator {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input[type="number"] {
+    width: calc(100% - 22px); /* Adjust width considering padding/border */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Style radio button labels for better alignment */
+.input-group label:has(input[type="radio"]) {
+    display: inline-block; /* Makes labels flow inline */
+    margin-right: 15px; /* Space between radio options */
+    font-weight: normal; /* Normal weight for options */
+}
+
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #5c67f2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4a54cc;
+}
+
+#resultArea {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9f5e9;
+    border: 1px solid #c8e6c9;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-weight: bold;
+    min-height: 1.5em; /* Reserve space */
+    text-align: center;
+}
+
+#errorArea {
+    margin-top: 10px;
+    color: #d9534f; /* Red color for errors */
+    font-weight: bold;
+    min-height: 1.2em; /* Reserve space */
+}
+
+.constants-info {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #555;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+}
+
+.constants-info ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.constants-info li {
+    margin-bottom: 5px;
+}

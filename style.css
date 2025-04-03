@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #eee;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+#simulation-section, #scale-section {
+    margin-bottom: 20px;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#simulation-canvas {
+    background-color: #000;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+#controls {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px;
+}
+
+#controls label {
+    display: block;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}

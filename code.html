@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Hole Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Black Hole Schwarzschild Radius Calculator</h1>
+
+    <div class="calculator">
+        <div class="input-group">
+            <label for="massInput">Enter Mass:</label>
+            <input type="number" id="massInput" placeholder="e.g., 10" step="any">
+        </div>
+
+        <div class="input-group">
+            <label>Mass Unit:</label>
+            <label>
+                <input type="radio" name="massUnit" value="kg" checked> Kilograms (kg)
+            </label>
+            <label>
+                <input type="radio" name="massUnit" value="solar"> Solar Masses (M☉)
+            </label>
+        </div>
+
+        <button id="calculateButton">Calculate Radius</button>
+
+        <div id="resultArea">
+            <!-- Result will appear here -->
+        </div>
+
+        <div id="errorArea">
+            <!-- Errors will appear here -->
+        </div>
+
+        <div class="constants-info">
+            <p>Using constants:</p>
+            <ul>
+                <li>Solar Mass (M☉) ≈ 1.989 x 10³⁰ kg</li>
+                <li>G ≈ 6.674 x 10⁻¹¹ m³ kg⁻¹ s⁻²</li>
+                <li>c ≈ 299,792,458 m/s</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
