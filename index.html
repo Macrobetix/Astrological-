@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#040714">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AstroCalc - Astronomical Calculations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Space particles for ambient animation -->
+    <div class="space-particle"></div>
+    <div class="space-particle"></div>
+    <div class="space-particle"></div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="display: inline-block; margin-right: 5px; font-size: 1.5em; background: linear-gradient(45deg, #4facfe, #00f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🪐</span>
+                <span style="font-weight: 700; letter-spacing: 0.5px; background: linear-gradient(45deg, #6facfe, #00f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Astro</span><span style="font-weight: 700; color: #ffffff;">Calc</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="solar-system.html">
+                            <i class="fas fa-sun" style="margin-right: 5px; color: #FDB813;"></i> Solar System
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="relativity.html">
+                            <i class="fas fa-atom" style="margin-right: 5px; color: #4facfe;"></i> Relativity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gravity.html">
+                            <i class="fas fa-globe" style="margin-right: 5px; color: #50C878;"></i> Gravity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#orbital-speed-panel">
+                            <i class="fas fa-globe" style="margin-right: 5px; color: #4facfe;"></i> Orbital
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="fas fa-info-circle" style="margin-right: 5px; color: #4facfe;"></i> About
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center mb-5 mt-4">
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        <span style="font-size: 2rem; margin-right: 15px; opacity: 0.7;" class="fa-stack">
+                            <i class="fas fa-circle fa-stack-2x" style="color: rgba(100, 155, 255, 0.2);"></i>
+                            <i class="fas fa-rocket fa-stack-1x fa-inverse" style="color: #4facfe;"></i>
+                        </span>
+                        <h1 class="text-center mb-0">Astronomical Calculations</h1>
+                        <span style="font-size: 2rem; margin-left: 15px; opacity: 0.7;" class="fa-stack">
+                            <i class="fas fa-circle fa-stack-2x" style="color: rgba(100, 155, 255, 0.2);"></i>
+                            <i class="fas fa-meteor fa-stack-1x fa-inverse" style="color: #4facfe;"></i>
+                        </span>
+                    </div>
+                    <p class="lead text-center">
+                        <i class="fas fa-star" style="color: #4facfe; margin-right: 10px; font-size: 0.8em;"></i>
+                        Explore orbital dynamics, black hole physics, and other astronomical phenomena
+                        <i class="fas fa-star" style="color: #4facfe; margin-left: 10px; font-size: 0.8em;"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" id="calculationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="orbital-speed-tab" data-bs-toggle="tab" data-bs-target="#orbital-speed-panel" type="button">
+                            Orbital Speed
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="orbital-period-tab" data-bs-toggle="tab" data-bs-target="#orbital-period-panel" type="button">
+                            Orbital Period
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="escape-velocity-tab" data-bs-toggle="tab" data-bs-target="#escape-velocity-panel" type="button">
+                            Escape Velocity
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="angular-momentum-tab" data-bs-toggle="tab" data-bs-target="#angular-momentum-panel" type="button">
+                            Angular Momentum
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="schwarzschild-tab" data-bs-toggle="tab" data-bs-target="#schwarzschild-panel" type="button">
+                            Schwarzschild Radius
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="black-hole-properties-tab" data-bs-toggle="tab" data-bs-target="#black-hole-properties-panel" type="button">
+                            Black Hole Properties
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="calculationTabContent">
+                    <!-- Orbital Speed Panel -->
+                    <div class="tab-pane fade show active" id="orbital-speed-panel" role="tabpanel">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5><i class="fas fa-satellite me-2"></i> Orbital Speed Calculator</h5>
+                                <span class="text-light-blue">Calculate the speed of an object in circular orbit around a central body</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="orbital-speed-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="os-celestial-body" class="form-label">Select a central body:</label>
+                                            <select id="os-celestial-body" class="form-select">
+                                                <option value="">Custom Mass</option>
+                                                <option value="sun">The Sun</option>
+                                                <option value="mercury">Mercury</option>
+                                                <option value="venus">Venus</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="mars">Mars</option>
+                                                <option value="jupiter">Jupiter</option>
+                                                <option value="saturn">Saturn</option>
+                                                <option value="uranus">Uranus</option>
+                                                <option value="neptune">Neptune</option>
+                                                <option value="sgrA">Sagittarius A* (Milky Way)</option>
+                                                <option value="m87">M87* (Supermassive Black Hole)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="os-mass" class="form-label">Mass of central body (kg):</label>
+                                            <input type="text" id="os-mass" class="form-control" placeholder="e.g., 5.972e24 for Earth">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="os-radius" class="form-label">Orbital radius (m):</label>
+                                            <input type="text" id="os-radius" class="form-control" placeholder="e.g., 6.371e6 for Earth's radius">
+                                        </div>
+                                        <div class="col-md-6 d-flex align-items-end">
+                                            <button type="button" id="orbital-speed-calculate" class="btn btn-primary">
+                                                <i class="fas fa-calculator me-2"></i>Calculate Orbital Speed
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results" id="orbital-speed-results"></div>
+                                <canvas id="orbital-speed-canvas" class="visualization-canvas hidden"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbital Period Panel -->
+                    <div class="tab-pane fade" id="orbital-period-panel" role="tabpanel">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5><i class="fas fa-clock me-2"></i> Orbital Period Calculator</h5>
+                                <span class="text-light-blue">Calculate the time it takes for an object to complete one orbit</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="orbital-period-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="op-celestial-body" class="form-label">Select a central body:</label>
+                                            <select id="op-celestial-body" class="form-select">
+                                                <option value="">Custom Mass</option>
+                                                <option value="sun">The Sun</option>
+                                                <option value="mercury">Mercury</option>
+                                                <option value="venus">Venus</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="mars">Mars</option>
+                                                <option value="jupiter">Jupiter</option>
+                                                <option value="saturn">Saturn</option>
+                                                <option value="uranus">Uranus</option>
+                                                <option value="neptune">Neptune</option>
+                                                <option value="sgrA">Sagittarius A* (Milky Way)</option>
+                                                <option value="m87">M87* (Supermassive Black Hole)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="op-mass" class="form-label">Mass of central body (kg):</label>
+                                            <input type="text" id="op-mass" class="form-control" placeholder="e.g., 5.972e24 for Earth">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="op-radius" class="form-label">Orbital radius (m):</label>
+                                            <input type="text" id="op-radius" class="form-control" placeholder="e.g., 6.371e6 for Earth's radius">
+                                        </div>
+                                        <div class="col-md-6 d-flex align-items-end">
+                                            <button type="button" id="orbital-period-calculate" class="btn btn-primary">
+                                                <i class="fas fa-calculator me-2"></i>Calculate Orbital Period
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results" id="orbital-period-results"></div>
+                                <canvas id="orbital-period-canvas" class="visualization-canvas hidden"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Escape Velocity Panel -->
+                    <div class="tab-pane fade" id="escape-velocity-panel" role="tabpanel">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5><i class="fas fa-rocket me-2"></i> Escape Velocity Calculator</h5>
+                                <span class="text-light-blue">Calculate the minimum speed needed to escape a gravitational field</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="escape-velocity-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="ev-celestial-body" class="form-label">Select a central body:</label>
+                                            <select id="ev-celestial-body" class="form-select">
+                                                <option value="">Custom Mass</option>
+                                                <option value="sun">The Sun</option>
+                                                <option value="mercury">Mercury</option>
+                                                <option value="venus">Venus</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="mars">Mars</option>
+                                                <option value="jupiter">Jupiter</option>
+                                                <option value="saturn">Saturn</option>
+                                                <option value="uranus">Uranus</option>
+                                                <option value="neptune">Neptune</option>
+                                                <option value="sgrA">Sagittarius A* (Milky Way)</option>
+                                                <option value="m87">M87* (Supermassive Black Hole)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="ev-mass" class="form-label">Mass of central body (kg):</label>
+                                            <input type="text" id="ev-mass" class="form-control" placeholder="e.g., 5.972e24 for Earth">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="ev-distance" class="form-label">Distance from center (m):</label>
+                                            <input type="text" id="ev-distance" class="form-control" placeholder="e.g., 6.371e6 for Earth's radius">
+                                        </div>
+                                        <div class="col-md-6 d-flex align-items-end">
+                                            <button type="button" id="escape-velocity-calculate" class="btn btn-primary">
+                                                <i class="fas fa-calculator me-2"></i>Calculate Escape Velocity
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results" id="escape-velocity-results"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Angular Momentum Panel -->
+                    <div class="tab-pane fade" id="angular-momentum-panel" role="tabpanel">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5><i class="fas fa-sync me-2"></i> Angular Momentum Calculator</h5>
+                                <span class="text-light-blue">Calculate the angular momentum of an orbiting object</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="angular-momentum-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="am-mass" class="form-label">Mass of orbiting object (kg):</label>
+                                            <input type="text" id="am-mass" class="form-control" placeholder="e.g., 1000 for a satellite">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="am-radius" class="form-label">Orbital radius (m):</label>
+                                            <input type="text" id="am-radius" class="form-control" placeholder="e.g., 6.371e6 for Earth's radius">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="am-velocity" class="form-label">Orbital velocity (m/s):</label>
+                                            <input type="text" id="am-velocity" class="form-control" placeholder="e.g., 7800 for LEO">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="button" id="angular-momentum-calculate" class="btn btn-primary">
+                                                <i class="fas fa-calculator me-2"></i>Calculate Angular Momentum
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results" id="angular-momentum-results"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Schwarzschild Radius Panel -->
+                    <div class="tab-pane fade" id="schwarzschild-panel" role="tabpanel">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5><i class="fas fa-circle me-2"></i> Schwarzschild Radius Calculator</h5>
+                                <span class="text-light-blue">Calculate the radius of a black hole's event horizon</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="schwarzschild-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="sr-mass" class="form-label">Mass (kg):</label>
+                                            <input type="text" id="sr-mass" class="form-control" placeholder="e.g., 1.989e30 for Sun's mass">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch mt-4">
+                                                <input class="form-check-input" type="checkbox" id="sr-solar-masses">
+                                                <label class="form-check-label" for="sr-solar-masses">Input in solar masses</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="button" id="schwarzschild-calculate" class="btn btn-primary">
+                                                <i class="fas fa-calculator me-2"></i>Calculate Schwarzschild Radius
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results" id="schwarzschild-results"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Black Hole Properties Panel -->
+                    <div class="tab-pane fade" id="black-hole-properties-panel" role="tabpanel">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5><i class="fas fa-black-hole me-2"></i> Black Hole Properties Calculator</h5>
+                                <span class="text-light-blue">Calculate various properties of a black hole</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="black-hole-properties-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="bhp-mass" class="form-label">Mass (kg):</label>
+                                            <input type="text" id="bhp-mass" class="form-control" placeholder="e.g., 1.989e30 for Sun's mass">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="bhp-spin" class="form-label">Spin parameter (0-1):</label>
+                                            <input type="text" id="bhp-spin" class="form-control" placeholder="e.g., 0.9 for rapidly spinning">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch mt-4">
+                                                <input class="form-check-input" type="checkbox" id="bhp-solar-masses">
+                                                <label class="form-check-label" for="bhp-solar-masses">Input in solar masses</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="button" id="black-hole-properties-calculate" class="btn btn-primary">
+                                                <i class="fas fa-calculator me-2"></i>Calculate Properties
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="results" id="black-hole-properties-results"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5" id="about">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-info-circle me-2"></i> About AstroCalc</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>AstroCalc is a comprehensive astronomical calculation toolkit that allows you to explore the mechanics of our universe. From orbital dynamics to black hole physics and relativistic effects, this application provides accurate calculations to help understand astronomical phenomena.</p>
+                        
+                        <h6>Features:</h6>
+                        <ul>
+                            <li>Orbital mechanics (speed, period, escape velocity)</li>
+                            <li>Black hole physics (Schwarzschild radius, photon sphere)</li>
+                            <li>Gravitational calculations</li>
+                            <li>Relativistic effects</li>
+                            <li>Solar system data browser</li>
+                        </ul>
+                        
+                        <p>This static web version runs entirely in your browser. All calculations are performed locally using JavaScript implementations of astrophysical formulas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p class="text-muted">
+                    <small>AstroCalc - Astronomical Calculations Toolkit</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/orbital.js"></script>
+    <script src="js/blackhole.js"></script>
+    <script src="js/formatting.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
